@@ -1,2 +1,2 @@
-# Concorde C++ - TSP Solver Exaple
+# Concorde C++ - TSP Solver Example
 TSP Solver in C++ with Concorde Library
