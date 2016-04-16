@@ -1,52 +1,20 @@
 // ================================================================
-// Problem: Many-to-many hub location routing problem
+// Problem: TSP - Travelling salesman problem
 //
-// Date:
+// Date: 15/04/2016
 //
-// Authors: Bruno Nonato Gomes
-//
-// Obs: A hybrid heuristic for MMHLP
-//
-// ================================================================
-#include <cstdio>
-#include <cstdlib>
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-#include <cmath>
-#include <math.h>
-#include <vector>
-#include <cstring>
-#include <sstream>
-#include <ctime>
-#include <cfloat>
-#include <deque>
-#include <algorithm>
-
-#define ADJUSTMENT 1000
-#define ZERO 0.000000000001
-#define EPSILON 0.0001
-using namespace std;
-
-
-// ================================================================
+// Authors: Rodrigo Brito (contato@rodrigobrito.net) e Bruno Gomes (bruno.nonato@ifmg.edu.br)
 //
 // ================================================================
 
 #include <iostream>
-#include <math.h>
-#include <list>
-#include <time.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <fstream>
 #include <vector>
-#include <cstdlib>
 #include <qsopt.h>
 extern "C" {
 	#include <concorde.h>
 }
+
+using namespace std;
 
 void solving_tsp_concorde(vector< vector<int> > * dist, vector<int> * rota);
 
@@ -71,7 +39,6 @@ int main(int argc, char* argv[]) {
 
     //Output tour
 	vector<int> * tour = new vector<int>(5, 0);
-    cout<<"TOUR = "<<tour->size()<<endl;
     //Concorde TSP proccess
     solving_tsp_concorde(dist, tour);
 
@@ -86,11 +53,10 @@ int main(int argc, char* argv[]) {
 
 
 void solving_tsp_concorde(vector< vector<int> > * dist, vector<int> * tour) {
-
     for(int i = 0; i < tour->size(); i++){
         tour->at(i) = i;
     }
-    if(dist->size() > 4 ){//TSP calculado apenas acima de 4 elementos
+    if(dist->size() > 4 ){//TSP only for more than 4 elements
         int rval = 0;
         int semente = rand();
         double szeit, optval, *mybnd, *mytimebound;
